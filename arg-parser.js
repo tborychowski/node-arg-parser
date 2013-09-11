@@ -95,7 +95,7 @@ module.exports = function (name, ver, description, samples) {
 			_allRequired.push(conf.value || conf.name);
 		}
 
-		if (conf.default) {
+		if (typeof conf.default !== 'undefined') {
 			this.params[conf.name] = conf.default;
 			if (conf.required) {
 				_reqGiven++;
@@ -163,6 +163,7 @@ module.exports = function (name, ver, description, samples) {
 			// It's a POSITIONAL param
 			else {
 				posParam = _positional[pos++];
+
 				if (!posParam || !posParam.name && pos > 0) {
 					pos = pos - 2;
 					posParam = _positional[pos];
@@ -174,6 +175,7 @@ module.exports = function (name, ver, description, samples) {
 					}
 
 					if (!this.params[posParam.name]) this.params[posParam.name] = param;
+					else if (this.params[posParam.name] === posParam.default) this.params[posParam.name] = param;
 					else this.params[posParam.name] += ' ' + param;
 				}
 			}

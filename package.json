@@ -1,6 +1,6 @@
 {
   "name": "arg-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node cli arguments parser",
   "author": { "name": "Tom" },
   "main": "arg-parser",
