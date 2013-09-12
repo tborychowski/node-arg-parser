@@ -5,8 +5,10 @@ node cli arguments parser
 
 
 
-Examples
+Example
 --------
+
+**test.js**
 
 	var Args = require('arg-parser'),
 
@@ -21,8 +23,11 @@ Examples
 
 	if (args.parse()) console.log(args.params);
 
+**Run test.js**
 
-Output:
+	node test.js -h
+
+**Output**
 
 	NodeJS arg-parser module tester
 	usage: test [options] <text>
