@@ -9,6 +9,7 @@ Example
 --------
 
 **test.js**
+````javascript
 
 	var Args = require('arg-parser'),
 
@@ -22,7 +23,8 @@ Example
 	args.add({ name: 'text', desc: 'text to store', required: true });
 
 	if (args.parse()) console.log(args.params);
-
+````
+	
 **Run test.js**
 
 	node test.js -h
