@@ -22,6 +22,22 @@ Examples
 	if (args.parse()) console.log(args.params);
 
 
+Output:
+
+	NodeJS arg-parser module tester
+	usage: test [options] <text>
+
+	 <text>                   text to store
+
+	 -V, --verbose            verbose mode
+	 -h, --help               display help & usage
+	 -i, --input-file=FILE    input file
+	 -o, --output-file=FILE   output file
+	 -q, --quiet              quiet mode
+	 -v, --version            display cli name & version
+
+	 In addition to these parameters - more info here...
+
 
 License
 -------
