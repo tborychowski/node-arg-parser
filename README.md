@@ -5,6 +5,11 @@ node cli arguments parser
 
 
 
+Installation
+--------
+	npm install arg-parser
+
+
 Example
 --------
 
