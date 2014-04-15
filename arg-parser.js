@@ -9,8 +9,8 @@ module.exports = function (name, ver, description, samples) {
 		_allSwitches = [],					// store all switches for quick comparison
 		_allRequired = [],					// store all required parameters to display in error when not passed
 
-		_rootName = Path.basename(require.main === module ? __filename : require.main.filename, '.js'),
-
+		_rootBaseName = (require.main === module ? __filename : require.main.filename),
+		_rootName = Path.basename(_rootBaseName, Path.extname(_rootBaseName)),
 
 		_bold = function (msg) { return '\x1B[1m' + msg + '\x1B[22m'; },
 		_red  = function (msg) { return '\x1B[31m' + msg + '\x1B[39m';  },
@@ -154,7 +154,7 @@ module.exports = function (name, ver, description, samples) {
 						else {
 							if (tmpV) self.params[sw.name] = tmpV;
 							else if (args[0] && args[0].indexOf('-') !== 0) self.params[sw.name] = args.splice(0, 1)[0];
-							else return error = 'Incorrect syntax...';
+							else return (error = 'Incorrect syntax...');
 						}
 					}
 				});
