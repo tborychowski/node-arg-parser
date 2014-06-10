@@ -9,8 +9,7 @@ module.exports = function (name, ver, description, samples) {
 		_allSwitches = [],					// store all switches for quick comparison
 		_allRequired = [],					// store all required parameters to display in error when not passed
 
-		_rootBaseName = (require.main === module ? __filename : require.main.filename),
-		_rootName = Path.basename(_rootBaseName, Path.extname(_rootBaseName)),
+		_rootName = Path.basename(require.main === module ? __filename : require.main.filename, '.js'),
 
 		_bold = function (msg) { return '\x1B[1m' + msg + '\x1B[22m'; },
 		_red  = function (msg) { return '\x1B[31m' + msg + '\x1B[39m';  },
@@ -118,12 +117,11 @@ module.exports = function (name, ver, description, samples) {
 
 		while (args.length) {
 			param = args.splice(0, 1)[0];
+			tmpV = null;
 
 			// It's a SWITCH
 			if (param.indexOf('-') > -1) {
-
 				if (_allSwitches.indexOf(param) === -1) {										// it's not on the list
-
 					if ((/^\-\w{2,}=.+$/).test(param)) {										// it's multiswith (-qVa=asd) and last param has value
 						args.push('-' + param.substr(param.indexOf('=') - 1));					// put the one with value back
 						param = param.substr(0, param.indexOf('=') - 1);						// deal with the multiswitch first
@@ -135,14 +133,12 @@ module.exports = function (name, ver, description, samples) {
 						args = args.concat(tmp);
 					}
 
-					tmpV = null;
 					if ((/^\-\-?\w+=.+$/).test(param)) {
 						tmp = param.split('=');
 						param = tmp[0];
 						tmpV = tmp[1];
 					}
 				}
-
 				_switches.forEach(function (sw) {
 					if (sw.switches.indexOf(param) > -1) {
 						if (sw.required && typeof self.params[sw.name] === 'undefined') {
@@ -154,7 +150,8 @@ module.exports = function (name, ver, description, samples) {
 						else {
 							if (tmpV) self.params[sw.name] = tmpV;
 							else if (args[0] && args[0].indexOf('-') !== 0) self.params[sw.name] = args.splice(0, 1)[0];
-							else return (error = 'Incorrect syntax...');
+							else if (typeof sw.default !== 'undefined') self.params[sw.name] = sw.default;
+							else return error = 'Incorrect syntax...', error;
 						}
 					}
 				});
