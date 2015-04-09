@@ -120,7 +120,7 @@ module.exports = function (name, ver, description, samples) {
 			tmpV = null;
 
 			// It's a SWITCH
-			if (param.indexOf('-') > -1) {
+			if (param.indexOf('-') === 0) {
 				if (_allSwitches.indexOf(param) === -1) {										// it's not on the list
 					if ((/^\-\w{2,}=.+$/).test(param)) {										// it's multiswith (-qVa=asd) and last param has value
 						args.push('-' + param.substr(param.indexOf('=') - 1));					// put the one with value back
