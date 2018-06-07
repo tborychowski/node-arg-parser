@@ -49,9 +49,3 @@ if (args.parse()) console.log(args.params);
 
 	 In addition to these parameters - more info here...
 
-
-License
--------
-
-*MIT*
-
