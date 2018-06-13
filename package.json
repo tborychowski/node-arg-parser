@@ -16,7 +16,7 @@
   ],
   "licenses": [
     {
-      "type": "MIT",
+      "type": "GPL-3.0-or-later",
       "url": "https://raw.github.com/tborychowski/node-arg-parser/master/LICENSE"
     }
   ],
