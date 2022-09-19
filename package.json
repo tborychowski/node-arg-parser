@@ -6,7 +6,7 @@
     "name": "Tom"
   },
   "type": "module",
-  "main": "index",
+  "main": "index.js",
   "dependencies": {},
   "engines": {
     "node": ">=18.0.0"
